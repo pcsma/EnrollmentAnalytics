@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   PieChart, Pie, Cell, Tooltip, BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Legend
 } from 'recharts';
-import { uploadCSV } from "../service/api";
+import { API_BASE } from "../service/api";
 
 const COLORS = ['#007bff', '#00bcd4', '#ffc107', '#ff6384', '#36a2eb', '#4caf50', '#795548', '#9c27b0'];
 
@@ -13,9 +13,9 @@ const Demographics = () => {
   const [age, setAge] = useState(null);
 
   useEffect(() => {
-    axios.get(`${uploadCSV}/analytics/demographics/gender`).then(res => setGender(res.data));
-    axios.get(`${uploadCSV}/analytics/demographics/course`).then(res => setCourse(res.data));
-    axios.get(`${uploadCSV}/analytics/demographics/age`).then(res => setAge(res.data));
+    axios.get(`${API_BASE}/analytics/demographics/gender`).then(res => setGender(res.data));
+    axios.get(`${API_BASE}/analytics/demographics/course`).then(res => setCourse(res.data));
+    axios.get(`${API_BASE}/analytics/demographics/age`).then(res => setAge(res.data));
   }, []);
 
   return (

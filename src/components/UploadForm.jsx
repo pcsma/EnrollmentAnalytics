@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { uploadCSV } from "../service/api";
+import { API_BASE } from "../service/api";
 
 const UploadForm = ({ setPreviewData }) => {
   const [file, setFile] = useState(null);
@@ -18,7 +18,10 @@ const UploadForm = ({ setPreviewData }) => {
     formData.append("file", file);
 
     try {
-      const response = await uploadCSV(file);
+      const response = await fetch(`${API_BASE}/upload/`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         const result = await response.json();
