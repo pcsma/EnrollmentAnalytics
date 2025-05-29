@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { uploadCSV } from "../service/api";
 
 const DataExplorer = () => {
   const [allData, setAllData] = useState([]);
@@ -11,7 +12,7 @@ const DataExplorer = () => {
 
   // Step 1: Fetch entire dataset (no pagination from server)
   useEffect(() => {
-    axios.get('http://localhost:8000/analytics/explorer/all')
+    axios.get(`${uploadCSV}/analytics/explorer/all`)
       .then(res => {
         setAllData(res.data.records);
       })

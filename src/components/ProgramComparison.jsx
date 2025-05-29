@@ -3,12 +3,13 @@ import axios from 'axios';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
+import { uploadCSV } from "../service/api";
 
 const ProgramComparison = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/analytics/programs/")
+    axios.get(`${uploadCSV}/analytics/programs/`)
       .then(res => setData(res.data))
       .catch(err => console.error("Failed to load program comparison data", err));
   }, []);

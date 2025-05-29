@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { uploadCSV } from "../service/api";
 
 const TopicInsights = () => {
   const [keywords, setKeywords] = useState([]);
@@ -16,7 +17,7 @@ const TopicInsights = () => {
 
       try {
         const insightsRes = await axios.get(`http://localhost:8000/analytics/topic-insights?enrolled_only=${enrolledOnly}`);
-        const labelsRes = await axios.get('http://localhost:8000/analytics/topic-labels');
+        const labelsRes = await axios.get(`${uploadCSV}/analytics/topic-labels`);
 
         setKeywords(insightsRes.data.keywords);
         setImage(`data:image/png;base64,${insightsRes.data.wordcloud}`);

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { uploadCSV } from "../service/api";
 
 const UploadForm = ({ setPreviewData }) => {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState('');
   const [success, setSuccess] = useState(null);
-
+  
+  
   const handleUpload = async () => {
     if (!file) {
       setMessage('Please select a file first.');
@@ -14,13 +16,9 @@ const UploadForm = ({ setPreviewData }) => {
 
     const formData = new FormData();
     formData.append("file", file);
-const API_BASE = import.meta.env.VITE_API_BASE;
 
     try {
-      const response = await fetch(`${API_BASE}/upload/`, {
-        method: "POST",
-        body: formData,
-      });
+      const response = await uploadCSV(file);
 
       if (response.ok) {
         const result = await response.json();

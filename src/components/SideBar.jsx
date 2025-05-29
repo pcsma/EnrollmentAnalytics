@@ -3,6 +3,8 @@ import { Link, useLocation, useOutletContext } from 'react-router-dom';
 import axios from 'axios';
 import NU from '../assets/NU Logo.png';
 import PCSMA from '../assets/PCSMA Logo.png';
+import { API_BASE } from "../service/api";
+
 
 
 const dashboardTabs = [
@@ -34,7 +36,7 @@ const Sidebar = ({setPreviewData}) => {
     formData.append("file", file);
 
     try {
-      const res = await axios.post("http://localhost:8000/upload/", formData);
+      const res = await axios.post(`${API_BASE}/upload/`, formData);
       setMessage("✅ Upload successful!");
       setError('');
 
